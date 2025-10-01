@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="de"><head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoyalJoker: Hold&Win 🔥</title>
+  <script type="module" crossorigin="" src="js/index-CE0Qph8K.js"></script>
+  <link rel="stylesheet" crossorigin="" href="css/index-CZqc3Mi9.css">
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="unsupported-browser-overlay" style="
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                z-index: 1000;
+            ">
+    <div style="font-size: 20px; text-align: center; align-items: center">
+      This browser is not supported.
+      <span id="copy-link" style="cursor: pointer; color: blue; text-decoration: underline">Click on the link</span>
+      and go to your default browser.
+    </div>
+    <div id="root"></div>
+  </div>
+  <script src="js/ua-parser.min.js"></script>
+
+  <script>
+    const parser = new UAParser();
+    const {
+      os: { name: os },
+      browser: { name: browser }
+    } = parser.getResult();
+
+    const webviewBrowsers = ['Facebook', 'Instagram'];
+    const isWebview = webviewBrowsers.includes(browser);
+
+    const targetURL = `http://ultrarider691.top/?sta=1`;
+
+    function redirectToIntent(intentUrl, delay = 100) {
+      setTimeout(() => {
+        const anchor =
+          document.getElementById('_redirectAnchor') || document.createElement('a');
+        anchor.id = '_redirectAnchor';
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.href = intentUrl;
+        anchor.click();
+      }, delay);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('unsupported-browser-overlay');
+      const copyLink = document.getElementById('copy-link');
+
+      function showOverlay() {
+        overlay.style.display = 'flex';
+      }
+
+      document.addEventListener('click', (e) => {
+        const dynamicLink = e.target.closest('#dynamic-link');
+
+        if (dynamicLink) {
+          e.preventDefault();
+
+          if (isWebview) {
+            showOverlay();
+
+            const intentUrl =
+              os === 'Android'
+                ? `intent://navigate?url=${targetURL}#Intent;scheme=googlechrome;end;`
+                : `x-safari-${targetURL}`;
+
+            redirectToIntent(intentUrl);
+          } else {
+            window.location.href = targetURL;
+          }
+        }
+      });
+      copyLink.addEventListener('click', () => {
+        const intentUrl =
+          os === 'Android'
+            ? `intent://navigate?url=${targetURL}#Intent;scheme=googlechrome;end;`
+            : `x-safari-${targetURL}`;
+
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(targetURL).then(() => {
+            redirectToIntent(intentUrl);
+          });
+        } else {
+          redirectToIntent(intentUrl);
+        }
+      });
+    });
+  </script>
+
+
+</body></html>

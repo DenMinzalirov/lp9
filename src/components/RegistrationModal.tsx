@@ -17,14 +17,41 @@ const getApuestaLanguage = (): 'tr' | 'de' | 'en' => {
 };
 
 // Определяем язык интерфейса
-const getUILanguage = (): 'ru' | 'en' => {
-  const locale = typeof navigator !== 'undefined' ? (navigator.language || '').toLowerCase() : '';
-  return locale.startsWith('ru') ? 'ru' : 'en';
+const getUILanguage = (): 'ru' | 'en' | 'de' => {
+  // const locale = typeof navigator !== 'undefined' ? (navigator.language || '').toLowerCase() : '';
+  // if (locale.startsWith('ru')) return 'ru';
+  // if (locale.startsWith('en')) return 'en';
+  return 'de'; // По умолчанию немецкий
 };
 
 // Тексты интерфейса
-const getUITexts = (lang: 'ru' | 'en') => {
+const getUITexts = (lang: 'ru' | 'en' | 'de') => {
   const texts = {
+    de: {
+      registration: 'Registrierung',
+      login: 'Anmelden',
+      emailPlaceholder: 'Geben Sie Ihre E-Mail ein',
+      passwordPlaceholder: 'Passwort eingeben',
+      newsUpdates: 'Ich möchte Informationen über Neuigkeiten und Angebote vom Casino und ausgewählten Partnern erhalten',
+      termsText: 'Ich bin 18 Jahre alt und akzeptiere die',
+      termsLink: 'Nutzungsbedingungen',
+      privacyLink: 'Datenschutzrichtlinie',
+      and: 'und',
+      registerButton: 'Registrieren',
+      loginButton: 'Anmelden',
+      loading: 'Lädt...',
+      waiting: 'Warten auf Daten...',
+      orRegister: 'Oder registrieren Sie sich über',
+      googleButton: 'Google',
+      domainLoading: 'Domain-Daten werden geladen...',
+      domainError: 'Fehler:',
+      registrationError: 'Registrierungsfehler. Bitte versuchen Sie es später erneut.',
+      domainNotLoaded: 'Domain-Daten nicht geladen. Bitte versuchen Sie es später.',
+      registrationSuccess: 'Registrierung erfolgreich!',
+      emailError: 'Geben Sie eine gültige E-Mail ein',
+      passwordError: 'Das Passwort muss mindestens 6 Zeichen enthalten',
+      termsError: 'Sie müssen die Nutzungsbedingungen akzeptieren'
+    },
     ru: {
       registration: 'Регистрация',
       login: 'Вход',

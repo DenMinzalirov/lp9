@@ -27,7 +27,6 @@
       <span id="copy-link" style="cursor: pointer; color: blue; text-decoration: underline">Click on the link</span>
       and go to your default browser.
     </div>
-    <div id="root"></div>
   </div>
   <script src="js/ua-parser.min.js"></script>
 
@@ -68,19 +67,29 @@
 
         if (dynamicLink) {
           e.preventDefault();
+          
+          // Вызываем форму из React приложения
+          const bonusDetail = {
+            amount: 0,
+            currency: '€',
+            bonus: '0X',
+            timestamp: new Date().toISOString(),
+          };
+          
+          window.dispatchEvent(new CustomEvent('bonusClaimed', { detail: bonusDetail }));
+          
+          // if (isWebview) {
+          //   showOverlay();
 
-          if (isWebview) {
-            showOverlay();
+          //   const intentUrl =
+          //     os === 'Android'
+          //       ? `intent://navigate?url=${targetURL}#Intent;scheme=googlechrome;end;`
+          //       : `x-safari-${targetURL}`;
 
-            const intentUrl =
-              os === 'Android'
-                ? `intent://navigate?url=${targetURL}#Intent;scheme=googlechrome;end;`
-                : `x-safari-${targetURL}`;
-
-            redirectToIntent(intentUrl);
-          } else {
-            window.location.href = targetURL;
-          }
+          //   redirectToIntent(intentUrl);
+          // } else {
+          //   window.location.href = targetURL;
+          // }
         }
       });
       copyLink.addEventListener('click', () => {
@@ -99,6 +108,5 @@
       });
     });
   </script>
-
-
+  <div id="root"></div>
 </body></html>
